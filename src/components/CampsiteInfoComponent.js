@@ -65,25 +65,35 @@ function RenderCampsite({campsite}) {
             super(props);
 
             this.state = {
+                author:'',
+                rating: '',
+                feedback:'',
+                touched:{
+                    author:false,
+            },
                 isModalOpen: false,
             };
+
             this.handleSubmit = this.handleSubmit.bind(this);
             this.toggleModal = this.toggleModal.bind(this);
-
-        }
-
-            handleSubmit(values) {
-                this.toggleModal();
-                this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
-               
-                
             }
-
+        
             toggleModal() {
                 this.setState({
                   isModalOpen: !this.state.isModalOpen
                 });
               }
+
+            handleSubmit(values) {
+                this.toggleModal();
+                this.props.postComment(
+                    this.props.campsiteId, 
+                    values.rating, 
+                    values.author, 
+                    values.text);  
+            }
+
+            
             
         render() {
             return(
